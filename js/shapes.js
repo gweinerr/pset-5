@@ -26,15 +26,26 @@ window.onload = function() {
  */
 
 const sayHello = function() {
+  let canvas = document.getElementById('student-canvas-1');
+  let ctx = canvas.getContext('2d');
   let write = prompt("Message:");
-  while (write.length >= 50){
+  if (write === null) {
+      ctx.clearRect(0, 0, 1024, 128);
+  } else {
+  while (write.length > 50){
     alert("Your message is too long. Keep it under 50 characters.");
     write = prompt("Message:");
   }
-  const ctx = document.getElementById('student-canvas-1').getContext('2d');
   ctx.font = '48px sans-serif';
   ctx.clearRect(0, 0, 1024, 128);
-  ctx.strokeText(write, 30, 70); }
+  var text = ctx.measureText(write);
+ctx.save();
+  if (text.width > canvas.width - 30) {
+    ctx.scale((canvas.width - 30)/text.width, 1);
+  }
+  ctx.strokeText(write, 30, 70);
+}
+ctx.restore();
 };
 
 /*
@@ -42,12 +53,11 @@ const sayHello = function() {
  */
 
 const drawRectangle = function() {
-    const drawRectangle = function() {
       let width = prompt("Width: ");
       let height = prompt("Height: ");
       let x = prompt("X: ");
-      let y = prompt("Y: "); };
-};
+      let y = prompt("Y: ");
+    };
 
 /*
  * Exercise 3.
