@@ -19,6 +19,7 @@ window.onload = function() {
     // equivalent set of six event listeners for your solutions. the first one is done for you.
 
     document.getElementById("hello").onclick = sayHello;
+    document.getElementById("rectangle").onclick = drawRectangle;
 }
 
 /*
@@ -53,10 +54,47 @@ ctx.restore();
  */
 
 const drawRectangle = function() {
-      let width = prompt("Width: ");
-      let height = prompt("Height: ");
-      let x = prompt("X: ");
-      let y = prompt("Y: ");
+  let canvas2 = document.getElementById('student-canvas-2');
+  let ctx2 = canvas2.getContext('2d');
+      let cancel = false;
+      let width;
+      let height;
+      let x;
+      let y;
+      let validInput = false;
+while (validInput === false && cancel === false) {
+   width = prompt("Width: ");
+   height = prompt("Height: ");
+   x = prompt("X: ");
+   y = prompt("Y: ");
+   if (width === null || height === null || x === null || y === null) {
+       cancel = true;
+   } else {
+     width = Number(width);
+     height = Number(height);
+     x = Number(x);
+     y = Number(y);
+      if (width < 1 || width > 1024) {
+        alert("Your width must be between 1 and 1024.");
+      } else if (height < 1 || height > 512) {
+        alert("Your height must be between 1 and 512.");
+      } else if (x < 1) {
+        alert("Your x-coordinate must be between 1 and 1024.");
+      } else if (y < 1) {
+        alert("Your y-coordinate must be between 1 and 512.");
+      } else if (x + width > canvas2.width) {
+        alert("Your rectangle won't fit on the canvas.");
+      } else if (x + height > canvas2.height) {
+        alert("Your rectangle won't fit on the canvas.");
+      } else {
+        validInput = true;
+      }
+    }
+}
+        ctx2.clearRect(0, 0, 1024, 512);
+        if (cancel !== true) {
+        ctx2.strokeRect(x, y, width, height);
+      }
     };
 
 /*
