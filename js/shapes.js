@@ -26,7 +26,15 @@ window.onload = function() {
  */
 
 const sayHello = function() {
-    // write your exercise 1 code here
+  let write = prompt("Message:");
+  while (write.length >= 50){
+    alert("Your message is too long. Keep it under 50 characters.");
+    write = prompt("Message:");
+  }
+  const ctx = document.getElementById('student-canvas-1').getContext('2d');
+  ctx.font = '48px sans-serif';
+  ctx.clearRect(0, 0, 1024, 128);
+  ctx.strokeText(write, 30, 70); }
 };
 
 /*
@@ -34,7 +42,11 @@ const sayHello = function() {
  */
 
 const drawRectangle = function() {
-    // write your exercise 2 code here
+    const drawRectangle = function() {
+      let width = prompt("Width: ");
+      let height = prompt("Height: ");
+      let x = prompt("X: ");
+      let y = prompt("Y: "); };
 };
 
 /*
