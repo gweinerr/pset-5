@@ -22,6 +22,8 @@ window.onload = function() {
     document.getElementById("rectangle").onclick = drawRectangle;
     document.getElementById("colored-rectangle").onclick = drawColoredRectangle;
     document.getElementById("triangle").onclick = drawTriangle;
+    document.getElementById("smile").onclick = drawFace;
+    document.getElementById("pyramid").onclick = drawPyramid;
 }
 
 /*
@@ -184,69 +186,84 @@ while (cancel === false) {
  * Exercise 4.
  */
 
-const drawTriangle = function() {
-  let canvas4 = document.getElementById('student-canvas-4');
-  let ctx4 = canvas4.getContext('2d');
-  let side1;
-  let side2;
-  let side3;
-  let height;
-  let hypotenuse;
-  let base;
-  let cancel = false;
+ const drawTriangle = function() {
+   let canvas4 = document.getElementById('student-canvas-4');
+   let ctx4 = canvas4.getContext('2d');
+   let side1;
+   let side2;
+   let side3;
+   let height;
+   let hypotenuse;
+   let base;
+   let cancel = false;
 
-while (cancel === false) {
     side1 = prompt("Side 1: ");
     side2 = prompt("Side 2: ");
     side3 = prompt("Side 3: ");
 
-if (isNaN(side1) || isNaN(side2) || isNaN(side3)) {
-    alert("One of your sides is not a number.")
-}
+   /*   hypotenuse = Math.max(side1, side2, side3);
+      height = Math.min(side1, side2, side3);
+      base = Math.sqrt(Math.pow(hypotenuse, 2) - Math.pow(height, 2)); */
 
-if (side1 < side3 && side1 < side2) {
- height = side1;
-  if (side3 > side2) {
-    hypotenuse = side3;
-    base = side2;
-  } else {
-    hypotenuse = side2;
-    base = side3;
-  }
-} else if (side1 > side3 && side1 < side2)  {
-  base = side1;
-  hypotenuse = side2;
-  height = side3;
-} else if (side1 < side3 && side1 > side2) {
-  base = side1;
-  hypotenuse = side3;
-  height = side2;
-} else if (side1 > side3 && side1 > side2) {
-  hypotenuse = side1
-    if (side3 > side2) {
-      base = side3;
-      height = side2;
-    } else {
-      base = side2;
-      height = side3;
+   if (side1 < side3 && side1 < side2) {
+     height = side1;
+     if (side3 > side2) {
+       hypotenuse = side3;
+       base = side2;
+     } else if (side2 > side3){
+       hypotenuse = side2;
+       base = side3;
+     }
+   } else if (side1 > side3 && side1 < side2)  {
+     base = side1;
+     hypotenuse = side3;
+     height = side2;
+   } else if (side1 < side3 && side1 > side2) {
+     base = side1;
+     hypotenuse = side2;
+     height = side3;
+   } else if (side1 > side3 && side1 > side2) {
+     hypotenuse = side1;
+       if (side3 > side2) {
+         base = side3;
+         height = side2;
+       } else if (side2 > side3) {
+         base = side2;
+         height = side3;
+       }
+   } else {
+     alert("That's not a valid right triangle.");
+   }
+
+   if (Math.pow(base, 2) + Math.pow(height, 2) !== Math.pow(hypotenuse, 2)) {
+   alert("That's not a valid right triangle.");
+ } else {
+   ctx4.beginPath();
+    ctx4.moveTo(25, 25);
+    ctx4.lineTo(25, parseFloat(height) + 25);
+    ctx4.lineTo(parseFloat(base) + 25, parseFloat(height) + 25);
+    ctx4.lineTo(25, 25);
+    ctx4.stroke();
+   console.log(base);
+   console.log(height);
+ }
+ };
+
+ /*
+    if (isNaN(side1) || isNaN(side2) || isNaN(side3)) {
+        alert("One of your sides is not a number.");
+    } else if (side1 < 1 || side1 > canvas4.width) {
+      alert("That's not a valid right triangle.");
+    } else if (side2 < 1 || side2 > canvas4.width) {
+      alert("That's not a valid right triangle.");
+    } else if (side3 < 1 || side3 > canvas4.width) {
+      alert("That's not a valid right triangle.");
+    } else if (Math.pow(hypotenuse, 2) !== Math.pow(base, 2) + Math.pow(height, 2)) {
+      alert("That's not a valid right triangle.");
+    } else if (base === side1 || base === )
     }
-} else {
-  alert("That's not a valid right triangle.");
-}
-
-if (Math.pow(base, 2) + Math.pow(height, 2) !== Math.pow(hypotenuse, 2)) {
-  alert("That's not a valid right triangle.");
-} else {
-  ctx4.beginPath();
-   ctx4.moveTo(25, 25);
-   ctx4.lineTo(25, height);
-   ctx4.lineTo(base, height);
-   ctx4.lineTo(25, 25);
-   ctx4.stroke();
-  cancel === true;
-}
-}
-};
+    */
+ /*
 
 /*
  * Exercise 5.
@@ -259,7 +276,41 @@ const drawFace = function() {
 /*
  * Exercise 6 (extra credit).
  */
+ const drawPyramid = function() {
+let canvas6 = document.getElementById('student-canvas-6');
+let ctx6 = canvas6.getContext('2d');
+let side;
+  let x = 10;
+  let y = canvas6.height - 10;
 
-const drawPyramid = function() {
-    // write your exercise 5 code here
+side = prompt("Side: ");
+
+while (side.length < 1) {
+  alert("Your block size must be at least 1.");
+  side = prompt("Side: ");
+}
+while (isNaN(side)) {
+alert("Your block size is not a number.");
+}
+
+ctx6.clearRect(0, 0, 1024, 512);
+for (let i = 0; i < 5; i++){
+ctx6.strokeRect(x + (side * i), y - side, side, side);
+}
+  x += 0.5 * side;
+  for (let i = 0; i < 4; i++) {
+ctx6.strokeRect(x + (side * i), y - 2 * side, side, side);
+}
+  x += 0.5 * side;
+  for (let i = 0; i <3; i++) {
+ctx6.strokeRect(x + (side * i), y - 3 * side, side, side);
+}
+  x += 0.5 * side;
+  for (let i = 0; i < 2; i++) {
+ctx6.strokeRect(x + (side * i), y - 4 * side, side, side);
+}
+  x += 0.5 * side;
+  for (let i = 0; i < 1; i++) {
+ctx6.strokeRect(x + (side * i), y - 5 * side, side, side);
+}
 };
