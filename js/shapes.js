@@ -21,6 +21,7 @@ window.onload = function() {
     document.getElementById("hello").onclick = sayHello;
     document.getElementById("rectangle").onclick = drawRectangle;
     document.getElementById("colored-rectangle").onclick = drawColoredRectangle;
+    document.getElementById("triangle").onclick = drawTriangle;
 }
 
 /*
@@ -182,7 +183,45 @@ while (cancel === false) {
  */
 
 const drawTriangle = function() {
-    // write your exercise 4 code here
+  let canvas4 = document.getElementById('student-canvas-4');
+  let ctx4 = canvas4.getContext('2d');
+  let side1 = prompt("Side 1: ");
+  let side2 = prompt("Side 2: ");
+  let side3 = prompt("Side 3: ");
+  let height;
+  let hypotenuse;
+  let base;
+
+if (side1 < side3 && side1 < side2) {
+ height = side1;
+  if (side3 > side2) {
+    hypotenuse = side3;
+    base = side2;
+  } else {
+    hypotenuse = side2;
+    base = side3;
+  }
+} else if (side1 > side3 && side1 < side2)  {
+  base = side1;
+  hypotenuse = side2;
+  height = side3;
+} else if (side1 < side3 && side1 > side2) {
+  base = side1;
+  hypotenuse = side3;
+  height = side2;
+} else if (side1 > side3 && side1 > side2) {
+  hypotenuse = side1
+    if (side3 > side2) {
+      base = side3;
+      height = side2;
+    } else {
+      base = side2;
+      height = side3;
+    }
+} else {
+  alert("That's not a valid right triangle.");
+}
+
 };
 
 /*
