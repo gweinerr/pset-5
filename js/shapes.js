@@ -282,17 +282,32 @@ let ctx6 = canvas6.getContext('2d');
 let side;
   let x = 10;
   let y = canvas6.height - 10;
+  let cancel = false;
+   let inBounds = false;
 
 side = prompt("Side: ");
 
-while (side.length < 1) {
+if (side === null) {
+  cancel = true;
+} else {
+  while (side.length < 1) {
   alert("Your block size must be at least 1.");
   side = prompt("Side: ");
 }
 while (isNaN(side)) {
 alert("Your block size is not a number.");
+side = prompt("Side: ");
 }
-
+  while (!inBounds) {
+    if (side * 5 <= canvas6.height - 10) {
+      inBounds = true;
+    } else {
+      alert("Your pyramid won't fit on the canvas.");
+      side = prompt("Side: ");
+    }
+  }
+}
+  if (cancel === false) {
 ctx6.clearRect(0, 0, 1024, 512);
 for (let i = 0; i < 5; i++){
 ctx6.strokeRect(x + (side * i), y - side, side, side);
@@ -312,5 +327,8 @@ ctx6.strokeRect(x + (side * i), y - 4 * side, side, side);
   x += 0.5 * side;
   for (let i = 0; i < 1; i++) {
 ctx6.strokeRect(x + (side * i), y - 5 * side, side, side);
+}
+} else {
+  ctx6.clearRect(0, 0, 1024, 512);
 }
 };
