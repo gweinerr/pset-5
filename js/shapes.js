@@ -196,15 +196,22 @@ while (cancel === false) {
    let hypotenuse;
    let base;
    let cancel = false;
+  let triangleFits = false;
+  let validTriangle = false;
+  let areNumbers = false;
 
+  while ((!triangleFits || !validTriangle || !areNumbers) && !cancel) {
     side1 = prompt("Side 1: ");
     side2 = prompt("Side 2: ");
     side3 = prompt("Side 3: ");
-
-   /*   hypotenuse = Math.max(side1, side2, side3);
-      height = Math.min(side1, side2, side3);
-      base = Math.sqrt(Math.pow(hypotenuse, 2) - Math.pow(height, 2)); */
-
+if (side1 === null || side2 === null || side3 === null) {
+  cancel = true;
+} else {
+    if (isNaN(side1) || isNaN(side2) || isNaN(side3)) {
+      alert("One of your sides is not a number.");
+    } else {
+      areNumbers = true;
+    }
    if (side1 < side3 && side1 < side2) {
      height = side1;
      if (side3 > side2) {
@@ -234,11 +241,23 @@ while (cancel === false) {
    } else {
      alert("That's not a valid right triangle.");
    }
-
+if (base > canvas4.width - 25 || height > canvas4.height - 25) {
+  alert("Your triangle won't fit on the canvas.");
+} else {
+  triangleFits = true;
+}
    if (Math.pow(base, 2) + Math.pow(height, 2) !== Math.pow(hypotenuse, 2)) {
    alert("That's not a valid right triangle.");
- } else {
-   ctx4.beginPath();
+  	 } else {
+       validTriangle = true;
+     }
+   }
+}
+  if (cancel) {
+ ctx4.clearRect(0, 0, canvas4.width, canvas4.height);
+  } else {
+    ctx4.clearRect(0, 0, canvas4.width, canvas4.height);
+    ctx4.beginPath();
     ctx4.moveTo(25, 25);
     ctx4.lineTo(25, parseFloat(height) + 25);
     ctx4.lineTo(parseFloat(base) + 25, parseFloat(height) + 25);
@@ -246,24 +265,8 @@ while (cancel === false) {
     ctx4.stroke();
    console.log(base);
    console.log(height);
- }
- };
-
- /*
-    if (isNaN(side1) || isNaN(side2) || isNaN(side3)) {
-        alert("One of your sides is not a number.");
-    } else if (side1 < 1 || side1 > canvas4.width) {
-      alert("That's not a valid right triangle.");
-    } else if (side2 < 1 || side2 > canvas4.width) {
-      alert("That's not a valid right triangle.");
-    } else if (side3 < 1 || side3 > canvas4.width) {
-      alert("That's not a valid right triangle.");
-    } else if (Math.pow(hypotenuse, 2) !== Math.pow(base, 2) + Math.pow(height, 2)) {
-      alert("That's not a valid right triangle.");
-    } else if (base === side1 || base === )
-    }
-    */
- /*
+     }
+  };
 
 /*
  * Exercise 5.
