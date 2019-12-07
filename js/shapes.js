@@ -239,7 +239,7 @@ if (side1 === null || side2 === null || side3 === null) {
          height = side3;
        }
    } else {
-     alert("That's not a valid right triangle.");
+//left blank on purpose
    }
 if (base > canvas4.width - 25 || height > canvas4.height - 25) {
   alert("Your triangle won't fit on the canvas.");
@@ -273,7 +273,57 @@ if (base > canvas4.width - 25 || height > canvas4.height - 25) {
  */
 
 const drawFace = function() {
-    // write your exercise 4 code here
+let canvas5 = document.getElementById('student-canvas-5');
+let ctx5 = canvas5.getContext('2d');
+let headRadius;
+let eyeRadius;
+let mouthRadius;
+let cancel = false;
+let isNumber = false;
+let smileFits = false;
+let validSmile = false;
+
+ctx5.clearRect(0, 0, canvas5.width, canvas5.height);
+while ((!smileFits || !isNumber || !validSmile) && !cancel) {
+  headRadius = prompt("Radius: ");
+
+if (headRadius === null) {
+cancel = true;
+} else {
+  if (isNaN(headRadius)) {
+    alert("One of your sides is not a number.");
+  } else {
+    isNumber = true;
+  }
+
+if (headRadius * 2 > canvas5.width || headRadius * 2 > canvas5.height) {
+alert("Your smile won't fit on the canvas.");
+} else {
+smileFits = true;
+}
+if (headRadius < 32) {
+alert("Your radius must be at least 32.");
+} else {
+    validSmile = true;
+  }
+}
+}
+eyeRadius = 0.15 * headRadius;
+mouthRadius = 0.7 * headRadius;
+
+};
+
+/*
+ctx5.beginPath();
+   ctx5.arc(75, 75, 50, 0, Math.PI * 2, true); // Outer circle
+   ctx5.moveTo(110, 75);
+   ctx5.arc(75, 75, 35, 0, Math.PI, false);  // Mouth (clockwise)
+   ctx5.moveTo(65, 65);
+   ctx5.arc(60, 65, 5, 0, Math.PI * 2, true);  // Left eye
+   ctx5.moveTo(95, 65);
+   ctx5.arc(90, 65, 5, 0, Math.PI * 2, true);  // Right eye
+   ctx5.stroke();
+
 };
 
 /*
