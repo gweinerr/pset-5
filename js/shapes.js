@@ -88,6 +88,8 @@ while (validInput === false && cancel === false) {
         alert("Your rectangle won't fit on the canvas.");
       } else if (x + height > canvas2.height) {
         alert("Your rectangle won't fit on the canvas.");
+      } else if (isNaN(width) || isNaN(height) || isNaN(x) || isNaN(y)) {
+        alert("One of your values is not a number.")
       } else {
         validInput = true;
       }
@@ -185,12 +187,22 @@ while (cancel === false) {
 const drawTriangle = function() {
   let canvas4 = document.getElementById('student-canvas-4');
   let ctx4 = canvas4.getContext('2d');
-  let side1 = prompt("Side 1: ");
-  let side2 = prompt("Side 2: ");
-  let side3 = prompt("Side 3: ");
+  let side1;
+  let side2;
+  let side3;
   let height;
   let hypotenuse;
   let base;
+  let cancel = false;
+
+while (cancel === false) {
+    side1 = prompt("Side 1: ");
+    side2 = prompt("Side 2: ");
+    side3 = prompt("Side 3: ");
+
+if (isNaN(side1) || isNaN(side2) || isNaN(side3)) {
+    alert("One of your sides is not a number.")
+}
 
 if (side1 < side3 && side1 < side2) {
  height = side1;
@@ -222,6 +234,18 @@ if (side1 < side3 && side1 < side2) {
   alert("That's not a valid right triangle.");
 }
 
+if (Math.pow(base, 2) + Math.pow(height, 2) !== Math.pow(hypotenuse, 2)) {
+  alert("That's not a valid right triangle.");
+} else {
+  ctx4.beginPath();
+   ctx4.moveTo(25, 25);
+   ctx4.lineTo(25, height);
+   ctx4.lineTo(base, height);
+   ctx4.lineTo(25, 25);
+   ctx4.stroke();
+  cancel === true;
+}
+}
 };
 
 /*
