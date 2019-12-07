@@ -20,6 +20,7 @@ window.onload = function() {
 
     document.getElementById("hello").onclick = sayHello;
     document.getElementById("rectangle").onclick = drawRectangle;
+    document.getElementById("colored-rectangle").onclick = drawColoredRectangle;
 }
 
 /*
@@ -102,7 +103,67 @@ while (validInput === false && cancel === false) {
  */
 
 const drawColoredRectangle = function() {
-    // write your exercise 3 code here
+  let canvas3 = document.getElementById('student-canvas-3');
+  let ctx3 = canvas3.getContext('2d');
+  let color;
+  let cancel = false;
+
+while (cancel === false) {
+  color = prompt("Color: ");
+
+ if (color === "black" || color === "Black") {
+    ctx3.clearRect(10, 10, 1024, 128);
+    ctx3.beginPath();
+    ctx3.rect(10, 10, 150, 50);
+    ctx3.fillStyle = "black";
+    ctx3.fill();
+    cancel = true;
+ } else if (color === "blue" || color === "Blue") {
+   ctx3.clearRect(10, 10, 1024, 128);
+   ctx3.beginPath();
+   ctx3.rect(10, 10, 100, 50);
+   ctx3.fillStyle = "blue";
+   ctx3.fill();
+   cancel = true;
+ } else if (color === "green" || color === "Green"){
+   ctx3.clearRect(10, 10, 1024, 128);
+   ctx3.beginPath();
+   ctx3.rect(10, 10, 100, 50);
+   ctx3.fillStyle = "green";
+   ctx3.fill();
+   cancel = true;
+ } else if (color === "orange" || color === "Orange") {
+   ctx3.clearRect(10, 10, 1024, 128);
+   ctx3.beginPath();
+   ctx3.rect(10, 10, 100, 50);
+   ctx3.fillStyle = "orange";
+   ctx3.fill();
+  cancel = true;
+ } else if (color === "purple" || color === "Purple") {
+   ctx3.clearRect(10, 10, 1024, 128);
+   ctx3.beginPath();
+   ctx3.rect(10, 10, 100, 50);
+   ctx3.fillStyle = "purple";
+   ctx3.fill();
+   cancel = true;
+ } else if (color === "red" || color === "Red") {
+   ctx3.clearRect(10, 10, 1024, 128);
+   ctx3.beginPath();
+   ctx3.rect(10, 10, 100, 50);
+   ctx3.fillStyle = "red";
+   ctx3.fill();
+   cancel = true;
+ } else if (color === "yellow" || color === "Yellow") {
+   ctx3.clearRect(10, 10, 1024, 128);
+   ctx3.beginPath();
+   ctx3.rect(10, 10, 100, 50);
+   ctx3.fillStyle = "yellow";
+   ctx3.fill();
+   cancel = true;
+ } else {
+   alert(color + " is not a supported color.");
+ }
+}
 };
 
 /*
