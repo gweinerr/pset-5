@@ -270,60 +270,64 @@ if (base > canvas4.width - 25 || height > canvas4.height - 25) {
  * Exercise 5.
  */
 
-const drawFace = function() {
-let canvas5 = document.getElementById('student-canvas-5');
-let ctx5 = canvas5.getContext('2d');
-let headRadius;
-let eyeRadius;
-let mouthRadius;
-let cancel = false;
-let isNumber = false;
-let smileFits = false;
-let validSmile = false;
+ const drawFace = function() {
+ let canvas5 = document.getElementById('student-canvas-5');
+ let ctx5 = canvas5.getContext('2d');
+ let headRadius;
+ let eyeRadius;
+ let mouthRadius;
+ let cancel = false;
+ let isNumber = false;
+ let smileFits = false;
+ let validSmile = false;
 
-ctx5.clearRect(0, 0, canvas5.width, canvas5.height);
-while ((!smileFits || !isNumber || !validSmile) && !cancel) {
-  headRadius = prompt("Radius: ");
+ ctx5.clearRect(0, 0, canvas5.width, canvas5.height);
+ while ((!smileFits || !isNumber || !validSmile) && !cancel) {
+   headRadius = prompt("Radius: ");
 
-if (headRadius === null) {
-cancel = true;
-} else {
-  if (isNaN(headRadius)) {
-    alert("One of your sides is not a number.");
-  } else {
-    isNumber = true;
-  }
-
-if (headRadius * 2 > canvas5.width || headRadius * 2 > canvas5.height) {
-alert("Your smile won't fit on the canvas.");
-} else {
-smileFits = true;
-}
-if (headRadius < 32) {
-alert("Your radius must be at least 32.");
-} else {
-    validSmile = true;
-  }
-}
-}
-eyeRadius = 0.15 * headRadius;
-mouthRadius = 0.7 * headRadius;
-
-if (cancel) {
-  ctx5.clearRect(0, 0, canvas5.width, canvas5.height);
-} else {
-  ctx5.beginPath();
-     ctx5.arc(512, 256, headRadius, 0, Math.PI * 2, true); // Outer circle
-     ctx5.moveTo(mouthRadius, 256);
-     ctx5.arc(512 - (headRadius * 0.4), 256 - (headRadius * 0.4), eyeRadius, 0, Math.PI, false);  // Mouth (clockwise)
-     ctx5.moveTo(65, 65);
-     ctx5.arc(60, 65, 5, 0, Math.PI * 2, true);  // Left eye
-     ctx5.moveTo(95, 65);
-     ctx5.arc(90, 65, 5, 0, Math.PI * 2, true);  // Right eye
-     ctx5.stroke();
-     //I need to fix all of the orange (numbers) ^^^^^^
+ if (headRadius === null) {
+ cancel = true;
+ } else {
+   if (isNaN(headRadius)) {
+     alert("One of your sides is not a number.");
+   } else {
+     isNumber = true;
    }
-};
+
+ if (headRadius * 2 > canvas5.width || headRadius * 2 > canvas5.height) {
+ alert("Your smile won't fit on the canvas.");
+ } else {
+ smileFits = true;
+ }
+ if (headRadius < 32) {
+ alert("Your radius must be at least 32.");
+ } else {
+     validSmile = true;
+   }
+ }
+ }
+ eyeRadius = 0.15 * headRadius;
+ mouthRadius = 0.7 * headRadius;
+ let faceX = canvas5.width/2;
+ let faceY = canvas5.height/2;
+ let eyeX1 = faceX - (headRadius * 0.4);
+ let eyeX2 = faceX + (headRadius * 0.4);
+ let eyeY = faceY - (headRadius * 0.4);
+
+ if (cancel) {
+   ctx5.clearRect(0, 0, canvas5.width, canvas5.height);
+ } else {
+   ctx5.beginPath();
+      ctx5.arc(faceX, faceY, headRadius, 0, Math.PI * 2, true); // Outer circle
+      ctx5.moveTo(faceX + mouthRadius, faceY);
+      ctx5.arc(faceX, faceY, mouthRadius, 0, Math.PI, false);  // Mouth (clockwise)
+      ctx5.moveTo(eyeX1 + eyeRadius, eyeY);
+      ctx5.arc(eyeX1, eyeY, eyeRadius, 0, Math.PI * 2, true);  // Left eye
+      ctx5.moveTo(eyeX2 + eyeRadius, eyeY);
+      ctx5.arc(eyeX2, eyeY, eyeRadius, 0, Math.PI * 2, true);  // Right eye
+      ctx5.stroke();
+    }
+ };
 
 /*
  * Exercise 6 (extra credit).
