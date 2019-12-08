@@ -263,8 +263,6 @@ if (base > canvas4.width - 25 || height > canvas4.height - 25) {
     ctx4.lineTo(parseFloat(base) + 25, parseFloat(height) + 25);
     ctx4.lineTo(25, 25);
     ctx4.stroke();
-   console.log(base);
-   console.log(height);
      }
   };
 
@@ -311,24 +309,26 @@ alert("Your radius must be at least 32.");
 eyeRadius = 0.15 * headRadius;
 mouthRadius = 0.7 * headRadius;
 
-};
-
-/*
-ctx5.beginPath();
-   ctx5.arc(75, 75, 50, 0, Math.PI * 2, true); // Outer circle
-   ctx5.moveTo(110, 75);
-   ctx5.arc(75, 75, 35, 0, Math.PI, false);  // Mouth (clockwise)
-   ctx5.moveTo(65, 65);
-   ctx5.arc(60, 65, 5, 0, Math.PI * 2, true);  // Left eye
-   ctx5.moveTo(95, 65);
-   ctx5.arc(90, 65, 5, 0, Math.PI * 2, true);  // Right eye
-   ctx5.stroke();
-
+if (cancel) {
+  ctx5.clearRect(0, 0, canvas5.width, canvas5.height);
+} else {
+  ctx5.beginPath();
+     ctx5.arc(512, 256, headRadius, 0, Math.PI * 2, true); // Outer circle
+     ctx5.moveTo(mouthRadius, 256);
+     ctx5.arc(512 - (headRadius * 0.4), 256 - (headRadius * 0.4), eyeRadius, 0, Math.PI, false);  // Mouth (clockwise)
+     ctx5.moveTo(65, 65);
+     ctx5.arc(60, 65, 5, 0, Math.PI * 2, true);  // Left eye
+     ctx5.moveTo(95, 65);
+     ctx5.arc(90, 65, 5, 0, Math.PI * 2, true);  // Right eye
+     ctx5.stroke();
+     //I need to fix all of the orange (numbers) ^^^^^^
+   }
 };
 
 /*
  * Exercise 6 (extra credit).
  */
+
  const drawPyramid = function() {
 let canvas6 = document.getElementById('student-canvas-6');
 let ctx6 = canvas6.getContext('2d');
