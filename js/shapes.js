@@ -182,7 +182,6 @@ while (cancel === false) {
    alert(color + " is not a supported color.");
    break;
   }
-  console.log(color);
 }
 };
 
