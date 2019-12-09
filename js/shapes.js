@@ -115,6 +115,10 @@ const drawColoredRectangle = function() {
 
 while (cancel === false) {
   color = prompt("Color: ");
+  if (color === null) {
+    ctx3.clearRect(10, 10, 1024, 128);
+    break;
+  }
   color = color.toLowerCase(color);
 
   switch (color) {
@@ -178,6 +182,7 @@ while (cancel === false) {
    alert(color + " is not a supported color.");
    break;
   }
+  console.log(color);
 }
 };
 
