@@ -213,6 +213,7 @@ if (side1 === null || side2 === null || side3 === null) {
 } else {
     if (isNaN(side1) || isNaN(side2) || isNaN(side3)) {
       alert("One of your sides is not a number.");
+      continue;
     } else {
       areNumbers = true;
     }
@@ -247,11 +248,13 @@ if (side1 === null || side2 === null || side3 === null) {
    }
 if (base > canvas4.width - 25 || height > canvas4.height - 25) {
   alert("Your triangle won't fit on the canvas.");
+  continue;
 } else {
   triangleFits = true;
 }
    if (Math.pow(base, 2) + Math.pow(height, 2) !== Math.pow(hypotenuse, 2)) {
    alert("That's not a valid right triangle.");
+   continue;
   	 } else {
        validTriangle = true;
      }
